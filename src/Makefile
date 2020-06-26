@@ -6,7 +6,8 @@ MOD_OBJ_PATH = /lib/modules/$(shell uname -r)/kernel/ecn
 install: lpc.c
 	@if [ ! -d "$(APP_EXE_PATH)" ]; then mkdir $(APP_EXE_PATH); fi
 	@if [ ! -d "$(DAT_FILE_PATH)" ]; then mkdir $(DAT_FILE_PATH); fi
-	@cd $(DAT_FILE_PATH) && mkdir lpc
+	@if [ ! -d "$(DAT_FILE_PATH)/lpc" ]; then mkdir $(DAT_FILE_PATH)/lpc; fi
+	@cd $(DAT_FILE_PATH)/lpc && touch lpc.dat
 	@gcc -o $(APP_EXE_PATH)/lpc lpc.c
 	@cp -rf mod build
 	@cd build && make
